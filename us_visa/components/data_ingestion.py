@@ -44,7 +44,7 @@ class DataIngestion:
         except Exception as e:
             raise USvisaException(e,sys)
 
-    def split_data_as_train_test(self,dataframe: DataFrame) ->None:
+    def split_data_as_train_test(self, dataframe: DataFrame) ->None:
         """
         Method Name :   split_data_as_train_test
         Description :   This method splits the dataframe into train set and test set based on split ratio 
