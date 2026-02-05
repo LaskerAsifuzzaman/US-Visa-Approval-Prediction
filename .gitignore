@@ -63,3 +63,4 @@ Thumbs.db
 # PDFs / Reports (optional)
 # =========================
 *.pdf
+artifact/*
