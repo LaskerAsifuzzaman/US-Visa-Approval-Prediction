@@ -3,13 +3,18 @@ from us_visa.exception import USvisaException
 from us_visa.logger import logging
 
 from us_visa.components.data_ingestion import DataIngestion
-from us_visa.entity.config_entity import DataValidation
+from us_visa.components.data_validation import DataValidation
+
 
 from us_visa.entity.config_entity import (DataIngestionConfig,
-                                          DataValidationConfig)
-                                        
+                                          DataValidationConfig,
+ )
+                                          
+
 from us_visa.entity.artifact_entity import (DataIngestionArtifact,
-                                            DataValidationArtifact)
+                                            DataValidationArtifact,
+)
+
 
 
 class TrainPipeline:
@@ -17,6 +22,9 @@ class TrainPipeline:
         self.data_ingestion_config = DataIngestionConfig()
         self.data_validation_config = DataValidationConfig()
 
+
+
+    
     def start_data_ingestion(self) -> DataIngestionArtifact:
         """
         This method of TrainPipeline class is responsible for starting data ingestion component
@@ -33,8 +41,9 @@ class TrainPipeline:
             return data_ingestion_artifact
         except Exception as e:
             raise USvisaException(e, sys) from e
+        
+    
 
- 
     def start_data_validation(self, data_ingestion_artifact: DataIngestionArtifact) -> DataValidationArtifact:
         """
         This method of TrainPipeline class is responsible for starting data validation component
@@ -58,8 +67,9 @@ class TrainPipeline:
 
         except Exception as e:
             raise USvisaException(e, sys) from e
-               
-  
+        
+
+    
     def run_pipeline(self, ) -> None:
         """
         This method of TrainPipeline class is responsible for running complete pipeline
@@ -67,6 +77,7 @@ class TrainPipeline:
         try:
             data_ingestion_artifact = self.start_data_ingestion()
             data_validation_artifact = self.start_data_validation(data_ingestion_artifact=data_ingestion_artifact)
+
         
         except Exception as e:
             raise USvisaException(e, sys)
